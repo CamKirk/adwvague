@@ -1,0 +1,32 @@
+{
+  "name": "adwvague",
+  "version": "1.0.0",
+  "description": "Austin Dev Week hackathon project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CamKirk/adwvague.git"
+  },
+  "keywords": [
+    "indeed",
+    "job",
+    "search",
+    "data",
+    "scraping"
+  ],
+  "author": "Camden Kirkland, Jacob Thomas, Sagarika Susarla, Kathryn Herod",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CamKirk/adwvague/issues"
+  },
+  "homepage": "https://github.com/CamKirk/adwvague#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "handlebars": "^4.0.11"
+  }
+}
