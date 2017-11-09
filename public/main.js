@@ -20,7 +20,8 @@ var cityMap = [
 function initMap(data) {
    var myLatLng = {lat:37.697948 , lng: -97.314835};
    var map = new google.maps.Map(document.getElementById('map'), {
-     zoom: 5,
+    
+     zoom: 1,
      center: myLatLng
    });
 

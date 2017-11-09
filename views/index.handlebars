@@ -6,38 +6,47 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Browse Jobs</h4>
-        <p class="card-text">Find out where you are most in-demand.</p>
-          <div class="row">
-               <div class="col-sm-8">
-                        <div class="container" id="map">
-                         {{!-- <img class="img-fluid" src="http://static6.businessinsider.com/image/52d85aaaeab8ea5a4348ebfb-1200-636/vaccinemap-us.png"
-                         /> --}}
-                         </div>
-               </div>
-               <div class="col-sm-4">
-                    <form action="/" method="POST">
-                    <div class="input-group input-group-lg">
-                         <input placeholder="HTML" type="text" name="newKeywords1" />
-                    </div>
-                    <div class="input-group input-group-lg">
-                         <input placeholder="CSS" type="text" name="newKeywords2" />
-                    </div>
-                    <div class="input-group input-group-lg">
-                         <input placeholder="Javascript" type="text" name="newKeywords3" />
 
-                    </div>
-                    <br>
-                    <input class="btn btn-primary" onClick="harvest()" />
-                    </form>
-               </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <p class="card-text">Find out where you are most in-demand.</p>
           </div>
+          <div class="col-sm-6" >
+            <form action="harvest()" id="myForm">
+              <div class="input-group input-group-sm">
+                <input placeholder="Enter your skills" type="text" name="newKeywords1" id="newKeywords1" />
+                <input class="btn btn-primary" type="submit" onClick="harvest()"/>
+              </div>
+
+            </form>
+          </div>
+        </div><!--end row-->
+      </div><!-- end card body-->
+    </div><!-- end card-->
+  </div><!-- end col-sm-12-->
+</div><!-- end row -->
+<div class="row">
+  <div class="col-sm-12" id="map">
+
+      <!--<img class="img-fluid" src="http://static6.businessinsider.com/image/52d85aaaeab8ea5a4348ebfb-1200-636/vaccinemap-us.png">-->
+      <img class="img-fluid" >
 
 
-      </div>
-    </div>
+
   </div>
-
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
