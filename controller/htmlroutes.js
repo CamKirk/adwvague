@@ -13,7 +13,8 @@ module.exports = (app) => {
     request.post({url:'http://' + req.get('host') + '/api', 
       form: {'newKeywords' : req.body.newKeywords}},
       (err, res, body) => {
-        response.json(JSON.parse(body));
+//        response.json(JSON.parse(body));
+        res.render("index", body)
       });
 
     // request('http://' + req.get('host') + '/api', (err, res, body)=>{
