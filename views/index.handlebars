@@ -1,34 +1,28 @@
-<div class="row"><div class="col s12 m6">
-
-	<strong class="green-text">Hot Spots:</strong>
-	<ol>
-		<!-- Loop thru all burger and only show un-eaten ones here -->
-		{{#each hotspots}}
-				<li>
-					<!-- button that allows for burger eaten state to change -->
-					<form action="/{{this.id}}" method="POST">
-						<input type="hidden" name="burgerName" value="{{this.id}}" />
-						<div class="row">
-							<div class="col s6">					
-								{{this.keywords}}
-								{{#each this.locations}}
-									<p>{{this.place}} : {{this.count}}</p>
-								{{/each}}
-							</div>
-								<input class="btn" type="submit" value="Delete It!" />
-							<div class="col s6">					
-							</div>
-						</div>
-					</form>
-				</li>
-		{{/each}}
-	</ol>
-</div><div class="col s12 m6">
-	<strong class="blue-text">Find Job Hotspots</strong>
-	<!-- Form to add a nw burger by name -->
-	<form action="/" method="POST">
-		<input placeholder="Keywords" type="text" name="newKeywords" />
-
-		<input class="btn" type="submit" />
-	</form>
-<div></div>
+<section>
+     <br>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Upload Resume</h4>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <label class="custom-file">
+          <input type="file" id="file2" class="custom-file-input">
+          <span class="custom-file-control">Choose File</span>
+          
+       </label>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Browse Jobs</h4>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
