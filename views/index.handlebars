@@ -1,22 +1,23 @@
 <section>
      <br>
 <div class="row">
-  
+
   <div class="col-sm-12">
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Browse Jobs</h4>
+
         <div class="row">
           <div class="col-sm-6">
             <p class="card-text">Find out where you are most in-demand.</p>
           </div>
           <div class="col-sm-6" >
-            <form action="/" method="POST" id="myForm">
+            <form action="harvest()" id="myForm">
               <div class="input-group input-group-sm">
                 <input placeholder="Enter your skills" type="text" name="newKeywords1" id="newKeywords1" />
-                <input class="btn btn-primary" type="submit" />
+                <input class="btn btn-primary" type="submit" onClick="harvest()"/>
               </div>
-              
+
             </form>
           </div>
         </div><!--end row-->
