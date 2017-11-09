@@ -6,12 +6,12 @@ module.exports = (app) => {
   app.get('/api/all', (req,res) => {
       const hotspots = [];
       db.get().then( data => {
-      //fetch everything from db, format it and place in array 
+      //fetch everything from db, format it and place in array
       data.forEach(doc => {
           hotspots.push({id: doc.id, keywords: doc.data().keywords, locations: doc.data().locations});
       });
       res.json(hotspots);
-        //console.log(hotspots);		
+        //console.log(hotspots);
       });
   })//get api/all
 
@@ -20,7 +20,8 @@ module.exports = (app) => {
   let responses = [];
 
   app.post("/api", (req, res)=>{
-    keywords = req.body.newKeywords;
+    keyword = req.body.searchterm;
+    console.log(req.body)
     axios.get('https://api.indeed.com/ads/apisearch', {
       params: {
         publisher: '1211867702868069',
@@ -37,31 +38,31 @@ module.exports = (app) => {
         totalResults = data.totalResults;       //number of results
       let maxResults = Math.ceil(totalResults/24);//number of api calls to make
       let counter = 0;                          //counter to ensure end of all results
-      //push the locations to the array 
+      //push the locations to the array
       let found;
       for (result of data.results) {
         found = responses.find((o, i) => {
           if (o.place === result.formattedLocation) {
             responses[i] = {'place':o.place, 'count':(o.count+1)}
             return true
-          } 
+          }
         });
         if (!found) {
-            responses.push({'place':result.formattedLocation, 'count':1})         
+            responses.push({'place':result.formattedLocation, 'count':1})
         }
       }
       for (i = 1; i < maxResults; i++){
-        getIndeedJobs(i, maxResults, responses, keywords, res);      
-      }      
+        getIndeedJobs(i, maxResults, responses, keywords, res);
+      }
       });
-    //call the model function to insert query	
+    //call the model function to insert query
     // db.add({
     // 	keywords: req.body.newKeywords,
     // 	locations: [{place: req.body.newPlace, count: req.body.newCount}]
     // });
-//    res.redirect("/");	
+//    res.redirect("/");
   });
-  
+
   const getIndeedJobs = (i, maxResults, responses, keywords, res) => {
     axios.get('https://api.indeed.com/ads/apisearch', {
       params: {
@@ -75,17 +76,17 @@ module.exports = (app) => {
       }
     })
     .then((response) => {
-      //push the locations to the array 
+      //push the locations to the array
       let found;
       for (result of response.data.results) {
         found = responses.find((o, i) => {
           if (o.place === result.formattedLocation) {
             responses[i] = {'place':o.place, 'count':(o.count+1)}
             return true
-          } 
+          }
         });
         if (!found) {
-            responses.push({'place':result.formattedLocation, 'count':1})         
+            responses.push({'place':result.formattedLocation, 'count':1})
         }
       }
       if (i >= maxResults-1){
@@ -95,7 +96,7 @@ module.exports = (app) => {
           locations: responses
         });
         res.json(responses)
-        
+
       }
     })
     .catch(function (error) {
