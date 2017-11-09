@@ -18,28 +18,39 @@ var cityMap = [
  ];
 
 function initMap(data) {
+  console.log(data)
    var myLatLng = {lat:37.697948 , lng: -97.314835};
    var map = new google.maps.Map(document.getElementById('map'), {
 
-     zoom: 3,
+     zoom: 4,
 
      center: myLatLng
    });
 
    if(data){
      data.forEach(function(city){
+       $("#city-list").append('<li>'+ city.place  +'</li>')
         var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({'address':city.address}, function(results, status) {
-          var cityCircle = new google.maps.Circle({
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.35,
-            map: map,
-            center: {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()},
-            radius: Math.sqrt(city.population) * 100
-          });
+        geocoder.geocode({'address':city.place}, function(results, status) {
+          console.log(city.count);
+          var lat = results[0].geometry.location.lat(),
+          lng = results[0].geometry.location.lng(),
+          cnt = city.count;
+          console.log(lat)
+          if (results[0]){
+            console.log("in IF")
+            var cityCircle = new google.maps.Circle({
+              strokeColor: '#FF0000',
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: '#FF0000',
+              fillOpacity: 0.35,
+              map: map,
+              center: {lat: lat, lng: lng},
+              radius: cnt * 5000
+            });
+            console.log("in IF")
+          }
         });
       });
 
@@ -48,7 +59,7 @@ function initMap(data) {
    else{
     cityMap.forEach(function(city){
        var geocoder = new google.maps.Geocoder();
-       geocoder.geocode({'address':city.address}, function(results, status) {
+       geocoder.geocode({'address':city.place}, function(results, status) {
          var cityCircle = new google.maps.Circle({
            strokeColor: '#FF0000',
            strokeOpacity: 0.8,
@@ -57,14 +68,15 @@ function initMap(data) {
            fillOpacity: 0.35,
            map: map,
            center: {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()},
-           radius: Math.sqrt(city.population) * 100
+           radius: Math.sqrt(city.count) * 100
          });
        });
      });
    }
  }  //init map
 
-function harvest(){
+$("#myForm").on("click", "button", (e) => {
+  e.preventDefault();
   var searchterm = $('#newKeywords1').val() || "Javascript";
   var sendData = {
     skill: searchterm
@@ -77,9 +89,9 @@ function harvest(){
       initMap(data);
   });
 
-}
+});
 
  $( document ).ready(function() {
   console.log( "ready!" );
-  harvest();
+  //harvest();
 });

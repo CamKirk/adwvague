@@ -20,8 +20,7 @@ module.exports = (app) => {
   let responses = [];
 
   app.post("/api", (req, res)=>{
-    keyword = req.body.skill;
-    console.log(req.body)
+    keywords = req.body.skill;
     axios.get('https://api.indeed.com/ads/apisearch', {
       params: {
         publisher: '1211867702868069',
@@ -63,7 +62,7 @@ module.exports = (app) => {
 //    res.redirect("/");
   });
 
-  const getIndeedJobs = (i, maxResults, responses, keywords, res) => {
+  const getIndeedJobs = (index, maxResults, responses, keywords, res) => {
     axios.get('https://api.indeed.com/ads/apisearch', {
       params: {
         publisher: '1211867702868069',
@@ -89,18 +88,19 @@ module.exports = (app) => {
             responses.push({'place':result.formattedLocation, 'count':1})
         }
       }
-      if (i >= maxResults-1){
+      if (index >= maxResults-1){
         console.log(responses);
         db.add({
           keywords: keywords,
           locations: responses
         });
+        console.log(responses[0]);
         res.json(responses)
 
       }
     })
     .catch(function (error) {
-      console.log(error);
+      //console.log(error);
     });
   }
 }
