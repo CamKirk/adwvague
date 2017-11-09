@@ -20,7 +20,7 @@ module.exports = (app) => {
   let responses = [];
 
   app.post("/api", (req, res)=>{
-    keyword = req.body.searchterm;
+    keyword = req.body.skill;
     console.log(req.body)
     axios.get('https://api.indeed.com/ads/apisearch', {
       params: {
