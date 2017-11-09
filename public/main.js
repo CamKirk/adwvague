@@ -17,6 +17,9 @@ var cityMap = [
    }
  ];
 
+ var acityMap = $("#body");
+console.log(acityMap);
+
  function initMap() {
    var myLatLng = {lat:37.697948 , lng: -97.314835};
    var map = new google.maps.Map(document.getElementById('map'), {
