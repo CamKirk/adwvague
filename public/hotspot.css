@@ -2,6 +2,7 @@
      -webkit-box-shadow: 5px 5px 15px 1px rgba(0, 0, 0, 0.75);
      -moz-box-shadow: 5px 5px 15px 1px rgba(0, 0, 0, 0.75);
      box-shadow: 5px 5px 15px 1px rgba(0, 0, 0, 0.75);
+     height: 90vh;
 }
 .btn-primary {
      text-align: right;
@@ -11,4 +12,5 @@
 }
 #map {
      max-height: 100%;
+     max-width: 100%;
 }
