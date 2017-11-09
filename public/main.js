@@ -77,6 +77,7 @@ function initMap(data) {
 
 $("#myForm").on("click", "button", (e) => {
   e.preventDefault();
+  $("#city-list").html('')  
   var searchterm = $('#newKeywords1').val() || "Javascript";
   var sendData = {
     skill: searchterm
