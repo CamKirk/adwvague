@@ -21,6 +21,7 @@ module.exports = (app) => {
 
   app.post("/api", (req, res)=>{
     keyword = req.body.searchterm;
+    console.log(req.body)
     axios.get('https://api.indeed.com/ads/apisearch', {
       params: {
         publisher: '1211867702868069',
