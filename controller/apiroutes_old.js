@@ -22,12 +22,6 @@ module.exports = (app) => {
   app.post("/api", (req, res)=>{
     keywords = req.body.newKeywords;
     getIndeedJobs(res);
-    //call the model function to insert query	
-    // db.add({
-    // 	keywords: req.body.newKeywords,
-    // 	locations: [{place: req.body.newPlace, count: req.body.newCount}]
-    // });
-//    res.redirect("/");	
   });
   
   const getIndeedJobs = (res) => {
@@ -76,7 +70,12 @@ console.log("totalResults: " + data.totalResults);
             //check if this is the last item
             if(counter === maxResults-1){
               console.log("Response: "+responses)
-              res.json(responses);              
+    //call the model function to insert query	
+    // db.add({
+    // 	keywords: req.body.newKeywords,
+    // 	locations: [{place: req.body.newPlace, count: req.body.newCount}]
+    // });
+            res.json(responses);              
             }
           }).catch(function (error) {
             console.log(error);

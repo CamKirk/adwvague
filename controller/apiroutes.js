@@ -90,7 +90,12 @@ module.exports = (app) => {
       }
       if (i >= maxResults-1){
         console.log(responses);
+        db.add({
+          keywords: keywords,
+          locations: responses
+        });
         res.json(responses)
+        
       }
     })
     .catch(function (error) {
