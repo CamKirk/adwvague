@@ -38,17 +38,22 @@ module.exports = (app) => {
       let maxResults = Math.ceil(totalResults/24);//number of api calls to make
       let counter = 0;                          //counter to ensure end of all results
       //push the locations to the array 
+      let found;
       for (result of data.results) {
-//console.log(result.formattedLocation)
-        responses.push(result.formattedLocation)
+        found = responses.find((o, i) => {
+          if (o.place === result.formattedLocation) {
+            responses[i] = {'place':o.place, 'count':(o.count+1)}
+            return true
+          } 
+        });
+        if (!found) {
+            responses.push({'place':result.formattedLocation, 'count':1})         
+        }
       }
-console.log("totalResults: " + responses);
-res.json(responses);
-    });
-    for (i = 1; i < maxResults; i++){
-      getIndeedJobs(i, maxResults, responses, res);      
-    }      
-//getIndeedJobs(res);
+      for (i = 1; i < maxResults; i++){
+        getIndeedJobs(i, maxResults, responses, keywords, res);      
+      }      
+      });
     //call the model function to insert query	
     // db.add({
     // 	keywords: req.body.newKeywords,
@@ -57,7 +62,7 @@ res.json(responses);
 //    res.redirect("/");	
   });
   
-  const getIndeedJobs = (i, maxResults, responses, res) => {
+  const getIndeedJobs = (i, maxResults, responses, keywords, res) => {
     axios.get('https://api.indeed.com/ads/apisearch', {
       params: {
         publisher: '1211867702868069',
@@ -71,9 +76,17 @@ res.json(responses);
     })
     .then((response) => {
       //push the locations to the array 
-      for (result of data.results) {
-//console.log(result.formattedLocation)
-        responses.push(result.formattedLocation)
+      let found;
+      for (result of response.data.results) {
+        found = responses.find((o, i) => {
+          if (o.place === result.formattedLocation) {
+            responses[i] = {'place':o.place, 'count':(o.count+1)}
+            return true
+          } 
+        });
+        if (!found) {
+            responses.push({'place':result.formattedLocation, 'count':1})         
+        }
       }
       if (i >= maxResults-1){
         console.log(responses);
